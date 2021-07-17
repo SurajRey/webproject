@@ -12,19 +12,19 @@
 
 
 
- mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/selforderkiosk',{
-   useNewUrlParser:true,
-   useCreateIndex:true,
-   useUnifiedTopology:true,
- });
+ // mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/selforderkiosk',{
+ //   useNewUrlParser:true,
+ //   useCreateIndex:true,
+ //   useUnifiedTopology:true,
+ // });
 
-// mongoose.connect('mongodb://localhost:27017/selforderkiosk',{useNewUrlParser:true,useUnifiedTopology:true},
-//     err => {
-//         if (!err)
-//             console.log('Mongodb connection succeeded.')
-//         else
-//             console.log('Error while connecting MongoDB : ' + JSON.stringify(err, undefined, 2))
-//     })
+mongoose.connect('mongodb+srv://self-order:tFneDMLBDWV889PH@cluster0.ulxq4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true},
+    err => {
+        if (!err)
+            console.log('Mongodb connection succeeded.')
+        else
+            console.log('Error while connecting MongoDB : ' + JSON.stringify(err, undefined, 2))
+    })
 
  const Product = mongoose.model('products',
  new mongoose.Schema({
