@@ -15,7 +15,7 @@ export default function HomeScreen(props) {
             </Typography>
             <Typography variant="h1" component="h1" className={styles.bold}>
               Order <br />
-              & pay
+              & pay USE
               <br />
               here
             </Typography>
