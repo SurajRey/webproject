@@ -148,7 +148,7 @@ export default function OrderScreen(props) {
               size="large"
               className={styles.largeButton}
             >
-              ADD To Order
+              ADD TO CART
             </Button>
           </Box>
         </Dialog>
