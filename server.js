@@ -3,6 +3,7 @@
  const dotenv = require('dotenv');
  const data = require('./data');
  const path = require('path');
+ const { MongoClient } = require('mongodb');
 
  dotenv.config();
  const app = express();
@@ -11,6 +12,14 @@
  app.use(express.urlencoded({extended:true}));
 
 
+ const uri = "mongodb+srv://self-order:tFneDMLBDWV889PH@cluster0.ulxq4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+ client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
  // mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/selforderkiosk',{
  //   useNewUrlParser:true,
@@ -18,15 +27,15 @@
  //   useUnifiedTopology:true,
  // });
 
-mongoose.connect('mongodb+srv://self-order:tFneDMLBDWV889PH@cluster0.ulxq4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true},
-    err => {
-        if (!err)
-            console.log('Mongodb connection succeeded.')
-        else
-            console.log('Error while connecting MongoDB : ' + JSON.stringify(err, undefined, 2))
-    })
+// mongoose.connect('mongodb+srv://self-order:tFneDMLBDWV889PH@cluster0.ulxq4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true},
+//     err => {
+//         if (!err)
+//             console.log('Mongodb connection succeeded.')
+//         else
+//             console.log('Error while connecting MongoDB : ' + JSON.stringify(err, undefined, 2))
+//     })
 
- const Product = mongoose.model('products',
+ const Product = client.model('products',
  new mongoose.Schema({
      name : String,
      description : String,
